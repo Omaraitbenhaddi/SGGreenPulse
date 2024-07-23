@@ -37,7 +37,7 @@ export default function LogPage() {
   const navigate = useNavigate();
   const [error, setError ] = useState(null)
 
-  const fetchLogsCall =useCallback(async (id) => {
+  const fetchLogsCall = useCallback(async (id) => {
     fetchLog(id ,setlongeur,setlog,setError)
     
   },[]) 

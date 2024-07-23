@@ -69,19 +69,20 @@ export const fetchLogs = async (setLogs, state,setError) => {
 };
 
 
-export const fetchLog = async (id,setlongeur,setUsers,setError) => {
+export const fetchLog = async (id, setlongeur, setUsers, setError) => {
   try {
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}logs/?page=${id + 1}`, {
-      headers: {
-        'Authorization': 'Token e84f889bba29bb12beb3d4607704174c789345f9',
-      },
-    });
-    setUsers(prev => Array.isArray(response.data.results) ? [...prev, ...response.data.results] : prev);
-    setlongeur(response.data.count)
+    const response = await fetch(`machines.json`);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    console.log(data);
+    setUsers(prev => Array.isArray(data.results) ? [...prev, ...data.results] : prev);
+    setlongeur(data.count);
   } catch (error) {
     console.error('Error fetching logs:', error);
     setUsers([]);
-    setError("Error de connexion Error fetching logs")
+    setError("Error de connexion Error fetching logs");
   }
 };
 
