@@ -5,6 +5,9 @@ import DashboardLayout from 'src/layouts/dashboard';
 
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
+export const LogPage = lazy(() => import('src/pages/log'));
+
+
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -19,6 +22,7 @@ export default function Router() {
       ),
       children: [
         { element: <IndexPage />, index: true },
+        { path: 'servicesDemende', element: <LogPage /> },
 
       ],
     },
